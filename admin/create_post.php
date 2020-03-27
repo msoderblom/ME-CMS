@@ -3,25 +3,13 @@ require_once '../db.php';
 require_once 'header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $title = htmlspecialchars($_POST['title']);
-    $body = $_POST['body'];
-    $body = '<p>' . preg_replace('#(<br\s*?/?>\s*?){2,}#', '</p>' . "\n" . '<p>', nl2br($body)) . '</p>';
-$body = htmlspecialchars($body);
-
-$sql = "INSERT INTO mecms_posts (title, body)
-VALUES (:title, :body)";
-
-$stmt = $db->prepare($sql);
-$stmt->bindParam(':title', $title);
-$stmt->bindParam(':body', $body);
-
-$stmt->execute();
+    require_once 'processing_post.php';
 
 }
 
 ?>
 
-<form action="#" method="POST">
+<form action="#" method="POST" enctype="multipart/form-data">
   <div class="form-group">
     <label for="post_title">Title</label>
     <input type="text" name="title" id="post_title" class="form-control" placeholder="Title" aria-label="Post title">
@@ -29,6 +17,12 @@ $stmt->execute();
   <div class="form-group">
     <label for="post_body">Example textarea</label>
     <textarea name="body" class="form-control" id="post_body" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="post_img">Upload image</label>
+    <input type="file" name="img_file" class="form-control-file" id="img_file" aria-describedby="fileHelp">
+    <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above
+      input. It's a bit lighter and easily wraps to a new line.</small>
   </div>
   <button type="submit" class="btn btn-primary">Publish</button>
 
