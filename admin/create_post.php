@@ -4,7 +4,18 @@ require_once 'header.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $title = htmlspecialchars($_POST['title']);
-    $body = htmlspecialchars($_POST['body']);
+    $body = $_POST['body'];
+    $body = '<p>' . preg_replace('#(<br\s*?/?>\s*?){2,}#', '</p>' . "\n" . '<p>', nl2br($body)) . '</p>';
+$body = htmlspecialchars($body);
+
+$sql = "INSERT INTO mecms_posts (title, body)
+VALUES (:title, :body)";
+
+$stmt = $db->prepare($sql);
+$stmt->bindParam(':title', $title);
+$stmt->bindParam(':body', $body);
+
+$stmt->execute();
 
 }
 
