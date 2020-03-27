@@ -8,7 +8,8 @@ $table = "<table class='table'>
                 <th scope='col'>Body</th>
                 <th scope='col'>Created at</th>
                 <th scope='col'>Active</th>
-                <th><th/>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>";
@@ -33,9 +34,13 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <td>$body</td>
                 <td>$date</td>
                 <td>$active</td>
-                <td><button type='button' class='btn btn-success'>Update</button>
-                    <button type='button' class='btn btn-warning'>Delete</button></td>
-
+                <td><button type='button' class='btn btn-success'>Update</button></td>
+                <td>
+                  <form action='delete.php' method='POST'>
+                    <button type='submit' class='btn btn-warning'>Delete</button>
+                    <input type='hidden' name='post_id' value='$id'>
+                  </form>
+                </td>
               </tr>";
 
     if ($classname === 'table-default') {
