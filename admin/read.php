@@ -14,7 +14,8 @@ $table = "<table class='table'>
             </thead>
             <tbody>";
 
-$sql = 'SELECT * FROM mecms_posts';
+$sql = 'SELECT * FROM mecms_posts
+        ORDER BY date_publish DESC';
 
 $stmt = $db->prepare($sql);
 $stmt->execute();
@@ -34,7 +35,12 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <td>$body</td>
                 <td>$date</td>
                 <td>$active</td>
-                <td><button type='button' class='btn btn-success'>Update</button></td>
+                <td>
+                  <form action='update.php' method='POST'>
+                    <button type='submit' class='btn btn-success'>Update</button>
+                    <input type='hidden' name='post_id' value='$id'>
+                  </form>
+                </td>
                 <td>
                   <form action='delete.php' method='POST'>
                     <button type='submit' class='btn btn-warning'>Delete</button>
