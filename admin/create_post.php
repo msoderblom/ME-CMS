@@ -15,8 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="text" name="title" id="post_title" class="form-control" placeholder="Title" aria-label="Post title">
   </div>
   <div class="form-group">
-    <label for="post_body">Example textarea</label>
+    <label for="post_body">Text</label>
     <textarea name="body" class="form-control" id="post_body" rows="3"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="post_iframe">Embed map or video</label>
+    <textarea name="embedded_iframe" class="form-control" id="post_iframe" rows="3"></textarea>
   </div>
   <div class="form-group">
     <label for="post_img">Upload image</label>

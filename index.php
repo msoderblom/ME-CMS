@@ -13,18 +13,32 @@ $blogPosts = "";
 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
     $title = htmlspecialchars($row['title']);
     $body = htmlspecialchars_decode($row['body']);
+    $img = $row['img'];
+    $iframe = htmlspecialchars_decode($row['iframe']);
+    $iframe = strip_tags($iframe, '<iframe>');
+
     $date = htmlspecialchars($row['date_publish']);
     $search = ['<script>', '</script>'];
     $replacements = ['&lt;script&gt;', '&lt;&sol;script&gt;'];
 
     $body = str_replace($search, $replacements, $body);
 
+    $imgtag = '';
+    if ($img) {
+        $imgtag = "<img class='card-img-top' src='images/$img' alt='$img'>";
+    }
+    $iframetag = '';
+    if ($iframe) {
+        $iframetag = $iframe;
+    }
+
     $blogPosts .= "
    <div class='card mb-4'>
-    <img class='card-img-top' src='http://placehold.it/750x300' alt='Card image cap'>
+   $imgtag
     <div class='card-body'>
       <h2 class='card-title'>$title</h2>
       $body
+      $iframetag
     </div>
     <div class='card-footer text-muted'>
       Posted: $date

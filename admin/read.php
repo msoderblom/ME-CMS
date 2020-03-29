@@ -14,7 +14,8 @@ $table = "<table class='table'>
             </thead>
             <tbody>";
 
-$sql = 'SELECT * FROM mecms_posts';
+$sql = 'SELECT * FROM mecms_posts
+        ORDER BY date_publish DESC';
 
 $stmt = $db->prepare($sql);
 $stmt->execute();
