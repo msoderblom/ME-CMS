@@ -1,9 +1,50 @@
 <?php
 
+$text_success = true;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $id_p = $_POST['id'];
-    $title_p = $_POST['title'];
+    $id_p = htmlspecialchars($_POST['id']);
+    $title_p = htmlspecialchars($_POST['title']);
     $body_p = $_POST['body'];
-    $iframe_p = $_POST['iframe'];
+    $body_p = '<p>' . preg_replace('#(<br\s*?/?>\s*?){2,}#', '</p>' . "\n" . '<p>', nl2br($body)) . '</p>';
+    $body_p = htmlspecialchars($body_p);
+    $iframe_p = htmlspecialchars($_POST['iframe']);
+
+    if (!$_FILES["img_file"]['error']) {
+        $success = true;
+        require_once 'img_check.php';
+
+        if ($success) {
+            echo '<br> BILD Success';
+
+            $sql = 'UPDATE mecms_posts
+            SET img = :img
+            WHERE id = :id';
+
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':id', $id_p);
+            $stmt->bindParam(':img', $img);
+            $stmt->execute();
+        }
+    }
+
+    if ($text_success) {
+
+        echo '<br> TExt Success';
+
+        $sql = 'UPDATE mecms_posts
+            SET title = :title,
+                body = :body,
+                iframe = :iframe
+            WHERE id = :id';
+
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':id', $id_p);
+        $stmt->bindParam(':title', $title_p);
+        $stmt->bindParam(':body', $body_p);
+        $stmt->bindParam(':iframe', $iframe_p);
+
+        $stmt->execute();
+    }
 
 }
