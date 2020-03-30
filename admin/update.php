@@ -14,8 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['update'])) {
 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $title = htmlspecialchars($row['title']);
+        echo " <hr><pre>";
+        print_r($row['iframe']);
+        echo " </pre>";
         $body = strip_tags(htmlspecialchars_decode($row['body']));
+
+
         $iframe = htmlspecialchars_decode($row['iframe']);
+       
+        
+        echo "
+        <hr>
+        <pre>";
+            print_r($iframe);
+            echo " </pre>";
+       
         $img = $row['img'];
     }
 
