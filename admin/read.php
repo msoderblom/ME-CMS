@@ -37,7 +37,7 @@ while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                 <td>$active</td>
                 <td>
                   <form action='update.php' method='POST'>
-                    <button type='submit' class='btn btn-success'>Update</button>
+                    <button type='submit' class='btn btn-success'>Edit</button>
                     <input type='hidden' name='post_id' value='$id'>
                   </form>
                 </td>

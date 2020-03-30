@@ -19,16 +19,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['update'])) {
         echo " </pre>";
         $body = strip_tags(htmlspecialchars_decode($row['body']));
 
-
         $iframe = htmlspecialchars_decode($row['iframe']);
-       
-        
+
         echo "
         <hr>
         <pre>";
-            print_r($iframe);
-            echo " </pre>";
-       
+        print_r($iframe);
+        echo " </pre>";
+
         $img = $row['img'];
     }
 
@@ -62,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
   </div>
   <input type="hidden" name="update" value="true">
   <input type="hidden" name="id" value="<?=$id?>">
-  <button type="submit" class="btn btn-primary">Update</button>
+  <button type="submit" class="btn btn-primary">Save</button>
 
 </form>
 
