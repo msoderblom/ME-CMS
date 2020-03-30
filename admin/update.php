@@ -39,13 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
 ?>
 <form action="#" method="POST" enctype="multipart/form-data">
   <div class="form-group">
-    <label for="post_title">Title</label>
+    <label for="post_title">Title*</label>
     <input type="text" name="title" value="<?=$title?>" id="post_title" class="form-control" placeholder="Title"
-      aria-label="Post title">
+      aria-label="Post title" required>
   </div>
   <div class="form-group">
-    <label for="post_body">Text</label>
-    <textarea name="body" class="form-control" id="post_body" rows="3"><?=$body?></textarea>
+    <label for="post_body">Text*</label>
+    <textarea name="body" class="form-control" id="post_body" rows="3" required><?=$body?></textarea>
   </div>
   <div class="form-group">
     <label for="post_iframe">Embed map or video</label>
@@ -55,8 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
   <div class="form-group">
     <label for="post_img">Select new image</label>
     <input type="file" name="img_file" class="form-control-file" id="img_file" aria-describedby="fileHelp">
-    <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above
-      input. It's a bit lighter and easily wraps to a new line.</small>
+    <small id="fileHelp" class="form-text text-muted"><?=$imgErrors?></small>
   </div>
   <input type="hidden" name="update" value="true">
   <input type="hidden" name="id" value="<?=$id?>">

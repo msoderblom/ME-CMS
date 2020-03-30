@@ -27,7 +27,6 @@ $success = true;
 require_once 'img_check.php';
 
 if ($success) {
-echo '<br> BILD Success';
 
 $sql = 'UPDATE mecms_posts
 SET img = :img
@@ -41,9 +40,6 @@ $stmt->execute();
 }
 
 if ($text_success) {
-
-echo '<br> TExt Success';
-
 $sql = 'UPDATE mecms_posts
 SET title = :title,
 body = :body,
