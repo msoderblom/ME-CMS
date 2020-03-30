@@ -10,17 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 $body_p = htmlspecialchars($body_p);
 
-echo "
-<hr>
-<pre>";
-    print_r($_POST['embedded_iframe']);
-    echo " </pre>";
 $iframe_p = htmlspecialchars($_POST['embedded_iframe']);
-echo "
-<hr>
-<pre>";
-    print_r($iframe_p);
-    echo " </pre>";
 
 if (!$_FILES["img_file"]['error']) {
 $success = true;
@@ -53,6 +43,10 @@ $stmt->bindParam(':body', $body_p);
 $stmt->bindParam(':iframe', $iframe_p);
 
 $stmt->execute();
+}
+
+if ($success && $text_success) {
+header('Location:index.php');
 }
 
 }
