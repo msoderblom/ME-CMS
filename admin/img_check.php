@@ -13,6 +13,7 @@ if (!$_FILES["img_file"]['error']) {
     } else {
         echo "File is not an image.";
         $uploadOk = 0;
+        $success = false;
     }
 
     // Check if file already exists
@@ -27,13 +28,15 @@ if (!$_FILES["img_file"]['error']) {
         && $imageFileType != "gif") {
         echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
         $uploadOk = 0;
+        $success = false;
     }
 
     // Check if $uploadOk is set to 0 by an error
     if ($uploadOk == 0) {
         echo "Sorry, your file was not uploaded.";
-        $success = false;
-
+        if ($success) {
+            $img = $_FILES["img_file"]["name"];
+        }
         // if everything is ok, try to upload file
     } else {
         if (move_uploaded_file($_FILES["img_file"]["tmp_name"], $target_file)) {
