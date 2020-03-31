@@ -3,6 +3,7 @@ require_once '../db.php';
 require_once 'header.php';
 require_once 'functions.php';
 $imgErrors = '';
+$img_choosen = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && !isset($_POST['update'])) {
 
@@ -34,6 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $iframe = $iframe_p;
 }
 
+if ($img !== null) {
+    $img_choosen .= "<img class='update-img' src='../images/$img'>
+                  <fieldset class='form-group'>
+                    <legend>Image alternatives</legend>
+                    <div class='form-check disabled'>
+                      <label class='form-check-label'>
+                        <input class='form-check-input' name='img_checkbox' type='checkbox' value='delete_img'>
+                        Delete image
+                      </label>
+                    </div>
+                  </fieldset>";
+}
+
 ?>
 <form action="#" method="POST" enctype="multipart/form-data">
   <div class="form-group">
@@ -50,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     <label for="post_iframe">Embed map or video</label>
     <textarea name="embedded_iframe" class="form-control" id="post_iframe" rows="3"><?=$iframe?></textarea>
   </div>
-  <img class="update-img" src="../images/<?=$img?>">
+  <?=$img_choosen?>
   <div class="form-group">
     <label for="post_img">Select new image</label>
     <input type="file" name="img_file" class="form-control-file" id="img_file" aria-describedby="fileHelp">
