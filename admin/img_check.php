@@ -9,7 +9,7 @@ if (!$_FILES["img_file"]['error']) {
     // Check if image file is a actual image or fake image
     $check = getimagesize($_FILES["img_file"]["tmp_name"]);
     if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
+        //echo "File is an image - " . $check["mime"] . ".";
         $uploadOk = 1;
     } else {
         $imgErrors .= 'File is not an image.<br>';

@@ -1,6 +1,6 @@
 <?php
 require_once '../db.php';
-require_once 'header.php';
+
 require_once 'functions.php';
 $imgErrors = '';
 $img_choosen = '';
@@ -47,6 +47,7 @@ if ($img !== null) {
                     </div>
                   </fieldset>";
 }
+require_once 'header.php';
 
 ?>
 <form action="#" method="POST" enctype="multipart/form-data">

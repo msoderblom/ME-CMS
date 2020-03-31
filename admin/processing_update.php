@@ -31,7 +31,6 @@ if (!$_FILES["img_file"]['error']) {
 require_once 'img_check.php';
 
 if ($success) {
-
 $sql = 'UPDATE mecms_posts
 SET img = :img
 WHERE id = :id';

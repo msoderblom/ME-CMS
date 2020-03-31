@@ -1,6 +1,5 @@
 <?php
 require_once '../db.php';
-require_once 'header.php';
 $imgErrors = '';
 $title = '';
 $body = '';
@@ -11,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 }
 
+require_once 'header.php';
 ?>
 
 <form action="#" method="POST" enctype="multipart/form-data">
